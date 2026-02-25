@@ -7,10 +7,9 @@ const ValidationLayer = (props) => {
     return {
       initialValues: props.formData,
       validationSchema: ValidationSchema,
-      // enableReinitialize: true,
       enableReinitialize: true,
       onSubmit:
-        props?.handleSave()
+        props?.handleSave
     }
   }
   const { handleSubmit, errors } = useFormik(handleParameter());

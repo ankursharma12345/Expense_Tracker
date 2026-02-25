@@ -1,27 +1,16 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import TextFieldForForm from "../../../Components/TextFieldForForm";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Validationlayer from "./ValidationLayer";
 import "../../../assets/Styles/SignUp_Page.css";
+import TextFieldForForm from "../../../Components/TextFieldForForm";
 
-const SignUp_Page = () => {
-  const [formData, setFormData] = useState({});
+const SignUp_Page = (props) => {
 
-  const handleChange = (id, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
-  };
 
   const navigate = useNavigate();
 
   const openLoginPage = () => navigate(`/`, { replace: true });
 
-  const handleSubmit = () => {
-
-  };
+  const handleSave = () => props?.handleSubmit();
 
   return (
     <>
@@ -63,8 +52,8 @@ const SignUp_Page = () => {
                   id="Name"
                   fullWidth
                   autoFocus
-                  onChange={handleChange}
-                  value={formData?.["Name"] || ""}
+                  onChange={props?.handleChange}
+                  value={props?.formData?.["Name"] || ""}
                   placeholder="Enter your name"
                 />
               </Grid>
@@ -78,8 +67,8 @@ const SignUp_Page = () => {
                   id="Email"
                   fullWidth
                   type="email"
-                  onChange={handleChange}
-                  value={formData?.["Email"] || ""}
+                  onChange={props?.handleChange}
+                  value={props?.formData?.["Email"] || ""}
                   placeholder="Enter your email"
                 />
               </Grid>
@@ -93,8 +82,8 @@ const SignUp_Page = () => {
                   id="Password"
                   fullWidth
                   type="password"
-                  onChange={handleChange}
-                  value={formData?.["Password"] || ""}
+                  onChange={props?.handleChange}
+                  value={props?.formData?.["Password"] || ""}
                   placeholder="Enter your password"
                 />
               </Grid>
@@ -108,8 +97,8 @@ const SignUp_Page = () => {
                   id="reEnterPassword"
                   fullWidth
                   type="password"
-                  onChange={handleChange}
-                  value={formData?.["reEnterPassword"] || ""}
+                  onChange={props?.handleChange}
+                  value={props?.formData?.["reEnterPassword"] || ""}
                   placeholder="Re-enter your password"
                 />
               </Grid>
@@ -127,7 +116,7 @@ const SignUp_Page = () => {
                     fontWeight: "bold",
                     fontSize: "1rem",
                   }}
-                  onClick={handleSubmit}
+                  onClick={handleSave}
                 >
                   Submit
                 </Button>
@@ -154,7 +143,6 @@ const SignUp_Page = () => {
           </Box>
         </Grid>
       </Grid>
-      <Validationlayer />
     </>
   );
 };

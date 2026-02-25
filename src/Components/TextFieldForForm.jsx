@@ -2,12 +2,12 @@ import { styled, TextField } from "@mui/material";
 import { Fragment } from "react";
 
 const StyledTextField = styled(TextField)({
-  '& .MuiOutlinedInput-root': {
-    height: "35px",
-  },
-  '& .MuiFormHelperText-root': {
-    margin: "0.2rem 0 0 0.3rem !important"
-  }
+  // '& .MuiOutlinedInput-root': {
+  //   height: "35px",
+  // },
+  // '& .MuiFormHelperText-root': {
+  //   margin: "0.2rem 0 0 0.3rem !important"
+  // }
 })
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { startTransition, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ValidationLayer from "./ValidationLayer";
 
@@ -17,12 +17,16 @@ const LoginFormHandler = () => {
 
   const navigate = useNavigate();
 
-  const openLoginPage = () => navigate(`/signup`, { replace: true });
+  const openSignupPage = () => {
+    startTransition(() => {
+      navigate(`/signup`, { replace: true });
+    });
+  }
 
   const propsForMainPage = {
     formData,
     handleChange,
-    openLoginPage,
+    openSignupPage,
     handleSave
   }
 

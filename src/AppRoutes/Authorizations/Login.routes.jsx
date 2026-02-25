@@ -1,5 +1,4 @@
 import { lazy, Suspense } from "react";
-
 const LoginPage = lazy(() =>
   import("../../Modules/Authorizations/Login/LoginFormHandler")
 );

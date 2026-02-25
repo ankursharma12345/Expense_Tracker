@@ -1,7 +1,8 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import TextFieldForForm from "../../../Components/TextFieldForForm";
-import "../../../assets/Styles/Login.css";
 import { useEffect } from "react";
+import "../../../assets/Styles/SignUp_Page.css";
+import PasswordWoState from "../../../Components/PasswordField";
 
 const Login = (props) => {
 
@@ -40,7 +41,6 @@ const Login = (props) => {
               <TextFieldForForm
                 id="Name"
                 label="Name"
-                fullWidth
                 autoFocus
                 onChange={props?.handleChange}
                 value={props?.formData?.["Name"] || ""}
@@ -54,8 +54,6 @@ const Login = (props) => {
               <TextFieldForForm
                 id="Email"
                 label="Email"
-                fullWidth
-                type="email"
                 onChange={props?.handleChange}
                 value={props?.formData?.["Email"] || ""}
                 placeholder="Enter your email"
@@ -65,11 +63,9 @@ const Login = (props) => {
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <TextFieldForForm
+              <PasswordWoState
                 id="Password"
                 label="Password"
-                fullWidth
-                type="password"
                 onChange={props?.handleChange}
                 value={props?.formData?.["Password"] || ""}
                 placeholder="Enter your password"
@@ -106,7 +102,7 @@ const Login = (props) => {
                     fontSize: "0.9rem",
                     textTransform: "none"
                   }}
-                  onClick={props?.openLoginPage}
+                  onClick={props?.openSignupPage}
                 >
                   Register
                 </Button>
