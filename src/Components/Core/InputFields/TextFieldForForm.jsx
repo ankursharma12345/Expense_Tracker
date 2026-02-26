@@ -28,6 +28,7 @@ const TextFieldForForm = (props) => {
         label={props?.label}
         value={props?.value}
         placeholder={props?.placeholder}
+        onKeyDown={props?.onKeyDown}
         fullWidth
         helperText={props?.helperText}
         error={props?.error}

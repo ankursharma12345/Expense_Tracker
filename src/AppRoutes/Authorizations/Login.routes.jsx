@@ -5,7 +5,7 @@ const LoginPage = lazy(() =>
 
 const Login = () => {
   return (
-    <Suspense fallback={<div>...Loading</div>}>
+    <Suspense fallback={<div>...Loading</div>}>    {/* Will apply Loader */}
       <LoginPage />
     </Suspense>
   );
