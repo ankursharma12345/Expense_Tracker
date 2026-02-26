@@ -1,8 +1,10 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import TextFieldForForm from "../../../Components/TextFieldForForm";
 import { useEffect } from "react";
 import "../../../assets/Styles/SignUp_Page.css";
-import PasswordWoState from "../../../Components/PasswordField";
+import SubmitButton from "../../../Components/Core/Buttons/SubmitButton";
+import PasswordWoState from "../../../Components/Core/InputFields/PasswordField";
+import TextFieldForForm from "../../../Components/Core/InputFields/TextFieldForForm";
+import { FormShortcutField } from "../../../Utils";
 
 const Login = (props) => {
 
@@ -23,6 +25,15 @@ const Login = (props) => {
     }
   }, [props?.errors]);
 
+  const handleKeyDown = (e)=>{
+    if(e?.altKey){
+      if(e?.key==="s"){
+        debugger;
+        FormShortcutField(e);
+      }
+    }
+  }
+
 
   return (
     <Grid container className="mainContainer">
@@ -36,12 +47,13 @@ const Login = (props) => {
             Please Enter Your Details Below
           </div>
 
-          <Grid container spacing={5} className="grid-form">
+          <Grid container spacing={5} className="grid-form" component="form">
             <Grid size={{ xs: 12 }}>
               <TextFieldForForm
                 id="Name"
                 label="Name"
                 autoFocus
+                onKeyDown={handleKeyDown}
                 onChange={props?.handleChange}
                 value={props?.formData?.["Name"] || ""}
                 placeholder="Enter your name"
@@ -55,6 +67,7 @@ const Login = (props) => {
                 id="Email"
                 label="Email"
                 onChange={props?.handleChange}
+                 onKeyDown={handleKeyDown}
                 value={props?.formData?.["Email"] || ""}
                 placeholder="Enter your email"
                 helperText={props?.errors?.["Email"]}
@@ -67,30 +80,28 @@ const Login = (props) => {
                 id="Password"
                 label="Password"
                 onChange={props?.handleChange}
+                 onKeyDown={handleKeyDown}
                 value={props?.formData?.["Password"] || ""}
                 placeholder="Enter your password"
                 helperText={props?.errors?.["Password"]}
                 error={props?.errors?.["Password"] ? true : false}
               />
             </Grid>
+             <Grid size={{ xs: 12 }}>
+              <SubmitButton
+                onClick={handleSave}
+                text="Get Started"
+              />
+            </Grid>
           </Grid>
 
-          <Grid container spacing={2} sx={{ marginTop: "2rem" }}>
-            <Grid size={{ xs: 12 }}>
-              <Button
-                variant="contained"
-                fullWidth
-                className="submitButton"
-                sx={{
-                  height: "50px",
-                  fontWeight: "bold",
-                  fontSize: "1rem",
-                }}
+          <Grid container spacing={2} sx={{ marginTop: "1rem" }}>
+            {/* <Grid size={{ xs: 12 }}>
+              <SubmitButton
                 onClick={handleSave}
-              >
-                Get Started
-              </Button>
-            </Grid>
+                text="Get Started"
+              />
+            </Grid> */}
 
             <Grid size={{ xs: 12 }} sx={{ textAlign: "center" }}>
               <div className="login-text">

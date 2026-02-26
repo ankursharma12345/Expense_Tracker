@@ -18,6 +18,7 @@ export default function PasswordWoState(props) {
       id={props.id}
       label={props.label}
       required={props.required}
+       onKeyDown={props?.onKeyDown}
       error={props.error}
       onClick={(e) => e.target.removeAttribute("readonly")}
       helperText={props.helperText}
