@@ -19,16 +19,14 @@ const Login = (props) => {
       const firstErrorField = errorFields[0];
       const element = document.getElementById(firstErrorField);
 
-      if (element) {
+      if (element)
         element.focus();
-      }
     }
   }, [props?.errors]);
 
-  const handleKeyDown = (e)=>{
-    if(e?.altKey){
-      if(e?.key==="s"){
-        debugger;
+  const handleKeyDown = (e) => {
+    if (e?.altKey) {
+      if (e?.key === "s") {
         FormShortcutField(e);
       }
     }
@@ -67,7 +65,7 @@ const Login = (props) => {
                 id="Email"
                 label="Email"
                 onChange={props?.handleChange}
-                 onKeyDown={handleKeyDown}
+                onKeyDown={handleKeyDown}
                 value={props?.formData?.["Email"] || ""}
                 placeholder="Enter your email"
                 helperText={props?.errors?.["Email"]}
@@ -80,14 +78,14 @@ const Login = (props) => {
                 id="Password"
                 label="Password"
                 onChange={props?.handleChange}
-                 onKeyDown={handleKeyDown}
+                onKeyDown={handleKeyDown}
                 value={props?.formData?.["Password"] || ""}
                 placeholder="Enter your password"
                 helperText={props?.errors?.["Password"]}
                 error={props?.errors?.["Password"] ? true : false}
               />
             </Grid>
-             <Grid size={{ xs: 12 }}>
+            <Grid size={{ xs: 12 }}>
               <SubmitButton
                 onClick={handleSave}
                 text="Get Started"
