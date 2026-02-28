@@ -7,14 +7,14 @@ export const SubmitButton = (props) => {
       fullWidth
       className="submitButton"
       sx={{
-          height: "50px",
-          fontWeight: "bold",
-          fontSize: "1rem",
-        }}
-        onClick={props?.onClick}
-      >
-        {props?.text}
-      </Button>
+        height: "35px",
+        fontWeight: "bold",
+        fontSize: "1rem",
+      }}
+      onClick={props?.onClick}
+    >
+      {props?.text}
+    </Button>
   )
 }
 export default SubmitButton;

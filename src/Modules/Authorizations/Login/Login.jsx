@@ -5,6 +5,7 @@ import SubmitButton from "../../../Components/Core/Buttons/SubmitButton";
 import PasswordWoState from "../../../Components/Core/InputFields/PasswordField";
 import TextFieldForForm from "../../../Components/Core/InputFields/TextFieldForForm";
 import { FormShortcutField } from "../../../Utils";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const Login = (props) => {
 
@@ -30,7 +31,27 @@ const Login = (props) => {
         FormShortcutField(e);
       }
     }
-  }
+  };
+
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      const userInfo = await fetch(
+        "https://www.googleapis.com/oauth2/v3/userinfo",
+        {
+          headers: {
+            Authorization: `Bearer ${tokenResponse.access_token}`,
+          },
+        }
+      );
+
+      const user = await userInfo.json();
+      console.log("User Info:", user);
+
+    },
+    onError: () => {
+      console.log("Login Failed");
+    }
+  });
 
 
   return (
@@ -94,12 +115,30 @@ const Login = (props) => {
           </Grid>
 
           <Grid container spacing={2} sx={{ marginTop: "1rem" }}>
-            {/* <Grid size={{ xs: 12 }}>
-              <SubmitButton
-                onClick={handleSave}
-                text="Get Started"
-              />
-            </Grid> */}
+
+            <Grid size={{ xs: 12 }} sx={{ textAlign: "center" }}>
+              <div className="login-text">
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  // className="loginButton"
+                  sx={{
+                    height: "35px",
+                    fontWeight: "bold",
+                    fontSize: "1rem",
+                    gap: 1
+                  }}
+                  onClick={() => login()}
+                >
+                  <img
+                    src="https://developers.google.com/identity/images/g-logo.png"
+                    alt="Google"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  Login with Google
+                </Button>
+              </div>
+            </Grid>
 
             <Grid size={{ xs: 12 }} sx={{ textAlign: "center" }}>
               <div className="login-text">
@@ -117,6 +156,7 @@ const Login = (props) => {
                 </Button>
               </div>
             </Grid>
+
           </Grid>
         </Box>
       </Grid>
